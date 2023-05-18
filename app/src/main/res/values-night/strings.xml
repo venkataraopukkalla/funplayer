@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="viewall_option">View All</string>
+    <string name="music_nav">Music</string>
+    <string name="create_playlist">Create PlayList</string>
+    <string name="all_songs">All Songs</string>
+    <string name="playlist">PlayList</string>
+    <string name="folder">Folder</string>
+</resources>
