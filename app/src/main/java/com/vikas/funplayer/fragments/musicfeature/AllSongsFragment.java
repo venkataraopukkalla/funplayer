@@ -72,14 +72,17 @@ public class AllSongsFragment extends Fragment  {
             @Override
             public void run() {
 
-                getActivity().runOnUiThread( ()->{
-                    if(mediaPlayer!=null &&mediaPlayer.isPlaying() ){
-                        cusumOnstart();
+                if(getActivity()!=null){
 
-                    }
+                    getActivity().runOnUiThread( ()->{
+                        if(mediaPlayer!=null &&mediaPlayer.isPlaying() ){
+                            cusumOnstart();
 
-                    new Handler().postDelayed(this,1000);
-                });
+                        }
+
+                        new Handler().postDelayed(this,1000);
+                    });
+                }
             }
         };
         Thread myThread = new Thread(runnable);

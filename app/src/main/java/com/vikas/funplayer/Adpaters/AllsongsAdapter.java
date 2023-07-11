@@ -1,5 +1,6 @@
 package com.vikas.funplayer.Adpaters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +48,8 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
         return new AllsongsViewHolder(view);
     }
 
+
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull AllsongsViewHolder holder, int position) {
         holder.songTitle.setText(songsDetailsList.get(position).getSongTitle());
@@ -54,10 +58,15 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
             holder.songTitle.setTextColor(Color.parseColor("#00FFCA"));
             holder.albumMovieImg.setBackgroundResource(R.drawable.checking);
 
+        }else{
+            holder.songTitle.setTextColor(R.color.black);
+            holder.albumMovieImg.setBackgroundResource(R.drawable.defaulthighlists);
+
         }
         byte[] albumArt = AlbumArt.getAlbumArt(songsDetailsList.get(position).getSongData());
         if(albumArt!=null){
             Glide.with(context).asBitmap().load(albumArt).into(holder.albumMovieImg);
+
 
         }else {
             Glide.with(context).asBitmap()
@@ -68,6 +77,8 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
         }
 
         holder.itemView.setOnClickListener(e->{
+
+
             MyMusic.currentSongNumber=holder.getAdapterPosition();
             Intent intent = new Intent(context, MusicPlayDesign.class);
             intent.putExtra("KEY_VALUE",songsDetailsList);

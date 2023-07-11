@@ -61,6 +61,13 @@ public class MusicFeatureFragment extends Fragment {
 
             }
         });
+        musicViewPage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
 
 
 
