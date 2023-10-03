@@ -11,4 +11,6 @@
     <color name="toolbar_color">#301E67</color>
     <color name="title_color">#F9F9F9</color>
     <color name="tabselecteddcolor">#00FFCA</color>
+    <color name="color1">#E2F6CA</color>
+    <color name="color2">#F8FDCF</color>
 </resources>

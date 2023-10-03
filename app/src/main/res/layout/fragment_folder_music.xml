@@ -6,11 +6,41 @@
     tools:context=".fragments.musicfeature.FolderMusicFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+   <com.google.android.material.appbar.MaterialToolbar
+       android:layout_width="match_parent"
+       android:id="@+id/folderToolbar"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="50dp"
+           android:src="@drawable/recommend_logo"/>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_marginStart="20dp"
+           android:textSize="18sp"
+           android:gravity="center_vertical"
+           android:text="Liked Songs"/>
+
+   </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@+id/folderToolbar"
+        android:id="@+id/playlistRecycleview"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_add_24" />
+
 
 </RelativeLayout>

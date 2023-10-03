@@ -11,12 +11,14 @@ public class SongsDetails implements Serializable,Parcelable {
     private  String songData;
     private String songDuration;
     private String songArtist;
+    private  int songNumber;
 
-    public SongsDetails(String songTitle, String songDuration,String songData, String songArtist) {
+    public SongsDetails(String songTitle, String songDuration,String songData, String songArtist,int songNumber) {
         this.songTitle = songTitle;
         this.songData = songData;
         this.songDuration = songDuration;
         this.songArtist = songArtist;
+        this.songNumber=songNumber;
     }
 
     protected SongsDetails(Parcel in) {
@@ -24,6 +26,7 @@ public class SongsDetails implements Serializable,Parcelable {
         songData = in.readString();
         songDuration = in.readString();
         songArtist = in.readString();
+        songNumber = in.readInt();
     }
 
     @Override
@@ -32,6 +35,7 @@ public class SongsDetails implements Serializable,Parcelable {
         dest.writeString(songData);
         dest.writeString(songDuration);
         dest.writeString(songArtist);
+        dest.writeInt(songNumber);
     }
 
     @Override
@@ -98,5 +102,20 @@ public class SongsDetails implements Serializable,Parcelable {
 
     public String getSongArtist() {
         return songArtist;
+    }
+
+    public int getSongNumber() {
+        return songNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "SongsDetails{" +
+                "songTitle='" + songTitle + '\'' +
+                ", songData='" + songData + '\'' +
+                ", songDuration='" + songDuration + '\'' +
+                ", songArtist='" + songArtist + '\'' +
+                ", songNumber=" + songNumber +
+                '}';
     }
 }

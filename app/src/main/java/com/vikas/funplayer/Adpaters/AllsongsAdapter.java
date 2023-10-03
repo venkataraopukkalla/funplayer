@@ -55,7 +55,7 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
         holder.songTitle.setText(songsDetailsList.get(position).getSongTitle());
 
         if(MyMusic.currentSongNumber==position){
-            holder.songTitle.setTextColor(Color.parseColor("#00FFCA"));
+            holder.songTitle.setTextColor(Color.parseColor("#FFD9C0"));
             holder.albumMovieImg.setBackgroundResource(R.drawable.checking);
 
         }else{
@@ -72,8 +72,6 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
             Glide.with(context).asBitmap()
                     .load(R.drawable.music_logo).into(holder.albumMovieImg);
 
-
-
         }
 
         holder.itemView.setOnClickListener(e->{
@@ -87,6 +85,12 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
 
 
     }
+    public  void updateSongList(ArrayList<SongsDetails> updatedList) {
+        songsDetailsList.clear();
+        songsDetailsList.addAll(updatedList);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {

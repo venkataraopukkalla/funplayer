@@ -134,7 +134,41 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/music_feature_constarinLayout"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/framlayout_musicFeature"/>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:id="@+id/currentSongDisplay_toolbar"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:id="@+id/currentSongAlbumArt_img"
+            android:src="@drawable/music_logo"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentSongTitle_txt"
+            android:layout_marginStart="30dp"
+            android:text="current song information"
+            android:maxWidth="230dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/cureentSongpausebtn_img"
+            android:src="@drawable/play_img"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
 
 </RelativeLayout>

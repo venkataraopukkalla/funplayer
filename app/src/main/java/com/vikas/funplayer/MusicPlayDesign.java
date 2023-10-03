@@ -1,32 +1,35 @@
 package com.vikas.funplayer;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.palette.graphics.Palette;
 
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
-import com.google.android.material.color.utilities.CorePalette;
+
 import com.vikas.funplayer.model.SongsDetails;
 import com.vikas.funplayer.util.AlbumArt;
+import com.vikas.funplayer.util.ConstraintlayoutSetBackGroundColor;
 import com.vikas.funplayer.util.MyMusic;
 
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.TagException;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ import java.util.ArrayList;
 public class MusicPlayDesign extends AppCompatActivity implements  MusicFunctionality {
     private ImageView backOption_img,moreOption_img;
     private ImageView setImageBackground_img,likedTheSongs_img;
-    private TextView setSongTitle;
+    private TextView setSongTitle,movieSongtxt;
     private SeekBar seekBar;
     private  TextView setSeekBarStartTime,setSeekBarEndTime;
     private  ImageView playSong_imgBtn,playPreviousSong_imgBtn,playNextSong_imgBtn;
@@ -48,7 +51,7 @@ public class MusicPlayDesign extends AppCompatActivity implements  MusicFunction
 
     boolean isSongContinue=false;
 
-    int vibrantColor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class MusicPlayDesign extends AppCompatActivity implements  MusicFunction
         setImageBackground_img=findViewById(R.id.songAlbumArt_img);
         likedTheSongs_img=findViewById(R.id.isItSongLiked_img);
         setSongTitle=findViewById(R.id.songTitle_txt);
+        movieSongtxt=findViewById(R.id.songMovieNametxt);
         seekBar=findViewById(R.id.seekbarTimer);
         setSeekBarStartTime=findViewById(R.id.starttime_txt);
         setSeekBarEndTime=findViewById(R.id.endtime_seekbar_txt);
@@ -154,7 +158,7 @@ public class MusicPlayDesign extends AppCompatActivity implements  MusicFunction
         });
 
     }
-    private  void setResources(){
+    private    void setResources(){
         mediaPlayer.reset();
         try {
              currentSongDetails = keyValue.get(MyMusic.currentSongNumber);
@@ -166,6 +170,19 @@ public class MusicPlayDesign extends AppCompatActivity implements  MusicFunction
             else
                 Glide.with(getApplicationContext()).asBitmap().load(R.drawable.music_logo).into(setImageBackground_img);
             setSongTitle.setText(currentSongDetails.getSongTitle());
+
+            // for background color of constartLayout
+
+            try {
+                ConstraintlayoutSetBackGroundColor.setBackGroundColorFromGlide(this,albumArt,musicPlayConstrainLayout_design);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            artlistNames();
+
+
+
+
             seekBar.setMax(Integer.valueOf(currentSongDetails.getSongDuration()));
             setSeekBarEndTime.setText(convertMilsecToMinAndSec(currentSongDetails.getSongDuration()));
             playCurrentSong();
@@ -187,6 +204,16 @@ public class MusicPlayDesign extends AppCompatActivity implements  MusicFunction
             else
                 Glide.with(getApplicationContext()).asBitmap().load(R.drawable.music_logo).into(setImageBackground_img);
             setSongTitle.setText(currentSongDetails.getSongTitle());
+
+            // for background color of constartLayout
+
+            try {
+                ConstraintlayoutSetBackGroundColor.setBackGroundColorFromGlide(this,albumArt,musicPlayConstrainLayout_design);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            artlistNames();
+
             seekBar.setMax(Integer.valueOf(currentSongDetails.getSongDuration()));
             setSeekBarEndTime.setText(convertMilsecToMinAndSec(currentSongDetails.getSongDuration()));
         }catch (Exception exception){
@@ -227,27 +254,24 @@ public class MusicPlayDesign extends AppCompatActivity implements  MusicFunction
         MyMusic.currentSongNumber-=1;
         setResources();
     }
+    private void artlistNames(){
+        try {
+            // Load the song file
+            File songFile = new File(currentSongDetails.getSongData());
+            AudioFile audioFile = AudioFileIO.read(songFile);
 
-//    public void playCurrentSong(){
-//        mediaPlayer.reset();
-//        try {
-//            mediaPlayer.setDataSource(currentSongDetails.getSongData());
-//            mediaPlayer.prepare();
-//            mediaPlayer.start();
-//            playSong_imgBtn.setImageResource(R.drawable.pause_img);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    public void playNextSong(){
-//            MyMusic.currentSongNumber+=1;
-//            setResources();
-//
-//    }
-//    private  void playPreviousSong(){
-//        MyMusic.currentSongNumber-=1;
-//        setResources();
-//
-//    }
+            // Get the movie name from the metadata
+            Tag tag = audioFile.getTag();
+            String artistname = tag.getFirst(FieldKey.ALBUM_ARTIST);
+            movieSongtxt.setText(artistname);
+
+
+
+        } catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException e) {
+            e.printStackTrace();
+            Toast.makeText(this,"error",Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

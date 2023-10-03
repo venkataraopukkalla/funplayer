@@ -27,7 +27,7 @@ public class MusicViewPageAdapter extends FragmentStateAdapter {
             case 0:
                 return  AllSongsFragment.instance(songsDetailsArrayList);
             case 1:
-                return  new AlbumFragment();
+                return  AlbumFragment.instance(songsDetailsArrayList);
 
         }
         return  new FolderMusicFragment();

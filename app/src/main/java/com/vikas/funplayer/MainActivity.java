@@ -61,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
         String selection= MediaStore.Audio.Media.IS_MUSIC+" != 0";
         // cursor
         Cursor cursor = getContentResolver().query(contentUri, projection, selection, null, null);
+        int i=0;
         while (cursor.moveToNext()){
             SongsDetails details = new SongsDetails(cursor.getString(0), cursor.getString(1),
-                    cursor.getString(2), cursor.getString(3));
+                    cursor.getString(2), cursor.getString(3),i);
             if(new File(details.getSongData()).exists() && details.getSongData().endsWith(".mp3")&& details.getSongData().indexOf("_")<0){
                 songsDetailsList.add(details);
+                i++;
             }
         }
         //set Framgents into activity
