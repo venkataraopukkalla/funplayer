@@ -25,9 +25,9 @@ public class MusicViewPageAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return  AllSongsFragment.instance(songsDetailsArrayList);
+                return AllSongsFragment.instance(songsDetailsArrayList);
             case 1:
-                return  AlbumFragment.instance(songsDetailsArrayList);
+                return AlbumFragment.instance(songsDetailsArrayList);
 
         }
         return  new FolderMusicFragment();
@@ -35,7 +35,7 @@ public class MusicViewPageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return  3;
+        return  2;
     }
 }
 

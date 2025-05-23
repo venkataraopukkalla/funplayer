@@ -7,10 +7,23 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="statusbar_color">#070A52</color>
+<!--    <color name="statusbar_color">#070A52</color>-->
+    <color name="statusbar_color">#301E67</color>
     <color name="toolbar_color">#301E67</color>
+    <color name="toolbar_color_light">#A285C0</color>
+    <color name="soft_white">#F9F9F9 </color>
     <color name="title_color">#F9F9F9</color>
     <color name="tabselecteddcolor">#00FFCA</color>
     <color name="color1">#E2F6CA</color>
     <color name="color2">#F8FDCF</color>
+    <color name="white_soft">#fcfaf8</color>
+    <color name="little_white">#44FFFFFF</color>
+    <color name="red_cancel">#DEFF3B30</color>
+    <color name="blue_ad">#007BFF</color>
+    <color name="dark_gray">#191414</color>
+    <color name="song_title_color">#212121</color>
+    <color name="light_gray">#B3B3B3</color> <!-- optional for watch button -->
+    <color name="colorAccent">#FF4081</color>
+
+
 </resources>

@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabTextColor="@color/black"
-        app:tabIndicatorColor="@color/tabselecteddcolor"
+        app:tabIndicatorColor="@color/toolbar_color"
         app:tabIndicatorHeight="3dp"
-        app:tabSelectedTextColor="@color/tabselecteddcolor"
+        android:fontFamily="@font/poppins"
+        app:tabSelectedTextColor="@color/toolbar_color"
         android:id="@+id/music_tablayoutList">
 
         <com.google.android.material.tabs.TabItem
@@ -27,10 +28,7 @@
             android:layout_height="wrap_content"
             android:text="@string/album" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/folder" />
+
 
 
     </com.google.android.material.tabs.TabLayout>

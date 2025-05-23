@@ -13,6 +13,8 @@ public class SongsDetails implements Serializable,Parcelable {
     private String songArtist;
     private  int songNumber;
 
+    private long albumId;
+
     public SongsDetails(String songTitle, String songDuration,String songData, String songArtist,int songNumber) {
         this.songTitle = songTitle;
         this.songData = songData;
@@ -88,6 +90,16 @@ public class SongsDetails implements Serializable,Parcelable {
 //        }
 //    };
 //
+
+
+    public long getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(long albumId) {
+        this.albumId = albumId;
+    }
+
     public String getSongTitle() {
         return songTitle;
     }

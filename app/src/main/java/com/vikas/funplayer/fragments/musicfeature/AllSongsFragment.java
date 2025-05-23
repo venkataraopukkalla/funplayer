@@ -1,5 +1,6 @@
 package com.vikas.funplayer.fragments.musicfeature;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -47,6 +48,9 @@ public class AllSongsFragment extends Fragment  {
     private AllsongsAdapter allSongsAdapter;
 
 
+    private TextView hintMessageTxt;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +59,17 @@ public class AllSongsFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_all_songs, container, false);
         allsongRecycleview=view.findViewById(R.id.allsongs_recycleview);
 
+        hintMessageTxt=view.findViewById(R.id.hintmesaage_txt);
+
         songsArrayList = getArguments().getParcelableArrayList(MainActivity.KEY_VALUE);
+
+        if(songsArrayList.size()==0){
+            hintMessageTxt.setText(R.string.no_songs_found);
+        }else{
+            hintMessageTxt.setVisibility(View.GONE);
+        }
         allsongRecycleview.setLayoutManager(new LinearLayoutManager(getContext()));
+        allsongRecycleview.setHasFixedSize(true);
         allsongRecycleview.setAdapter(new AllsongsAdapter(songsArrayList,getContext()));
 
 
@@ -67,12 +80,7 @@ public class AllSongsFragment extends Fragment  {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
 
-        allsongRecycleview.setAdapter(new AllsongsAdapter(songsArrayList,getContext()));
-    }
 
 
 

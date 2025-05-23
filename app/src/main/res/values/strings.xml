@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FunPlayer</string>
+    <string name="app_name">OfflineFlow</string>
     <string name="search_bar">Search bar</string>
     <string name="history">History</string>
     <string name="viewall_option">View All</string>
@@ -25,4 +25,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="mixer">Mixer</string>
+    <string name="fav">Fav</string>
+    <string name="song_name">Song name</string>
+    <string name="no_playlist_avaiable_message">You haven\'t created any playlists yet.\nAdd songs to a playlist from the music list.</string>
+    <string name="no_songs_found">No Songs Found</string>
+    <string name="share_songs">Share songs</string>
+    <string name="test_banner_ad_unit">ca-app-pub-3940256099942544/9214589741</string>
+    <string name="test_interstitial_ad_unit">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="test_reward_ad_unit">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="made_in_india">Made in India</string>
 </resources>

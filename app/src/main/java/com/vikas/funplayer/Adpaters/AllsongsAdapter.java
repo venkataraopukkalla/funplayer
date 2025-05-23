@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,29 +55,32 @@ public class AllsongsAdapter extends  RecyclerView.Adapter<AllsongsViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull AllsongsViewHolder holder, int position) {
         holder.songTitle.setText(songsDetailsList.get(position).getSongTitle());
+        holder.artistName.setText(songsDetailsList.get(position).getSongArtist());
 
-        if(MyMusic.currentSongNumber==position){
-            holder.songTitle.setTextColor(Color.parseColor("#FFD9C0"));
-            holder.albumMovieImg.setBackgroundResource(R.drawable.checking);
+//        if(MyMusic.currentSongNumber==position){
+//            holder.songTitle.setTextColor(Color.parseColor("#070A52"));
+//            holder.albumMovieImg.setBackgroundResource(R.drawable.checking);
+//
+//        }else{
+//            holder.songTitle.setTextColor(R.color.black);
+//            holder.albumMovieImg.setBackgroundResource(R.drawable.defaulthighlists);
+//
+//        }
+        Uri albumArtUri = Uri.parse("content://media/external/audio/albumart/" + songsDetailsList.get(position).getAlbumId());
 
-        }else{
-            holder.songTitle.setTextColor(R.color.black);
-            holder.albumMovieImg.setBackgroundResource(R.drawable.defaulthighlists);
+        Glide.with(context)
+                .load(albumArtUri)
+                .override(120, 120)
+                .centerCrop()
+                .placeholder(R.drawable.music_logo_light)
+                .error(R.drawable.music_logo_light)
+                .into(holder.albumMovieImg);
 
-        }
-        byte[] albumArt = AlbumArt.getAlbumArt(songsDetailsList.get(position).getSongData());
-        if(albumArt!=null){
-            Glide.with(context).asBitmap().load(albumArt).into(holder.albumMovieImg);
 
-
-        }else {
-            Glide.with(context).asBitmap()
-                    .load(R.drawable.music_logo).into(holder.albumMovieImg);
-
-        }
 
         holder.itemView.setOnClickListener(e->{
 
+            Log.d("VIKAS_TEST","Click a song");
 
             MyMusic.currentSongNumber=holder.getAdapterPosition();
             Intent intent = new Intent(context, MusicPlayDesign.class);
