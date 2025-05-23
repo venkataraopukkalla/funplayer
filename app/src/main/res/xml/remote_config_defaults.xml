@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>show_ads</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>banner_ad_unit_id</key>
+        <value>ca-app-pub-3940256099942544/9214589741</value>
+    </entry>
+    <entry>
+        <key>interstitial_ad_unit_id</key>
+        <value>ca-app-pub-3940256099942544/1033173712</value>
+    </entry>
+    <entry>
+        <key>rewarded_ad_unit_id</key>
+        <value>ca-app-pub-3940256099942544/5224354917</value>
+    </entry>
+
+    <entry>
+        <key>interstitial_cooldown_period</key>
+        <value>8</value> <!-- Default cooldown period is 8 minutes -->
+    </entry>
+    <entry>
+        <key>max_rewarded_ads_per_day</key>
+        <value>1</value> <!-- Default is 1 rewarded ad per day -->
+    </entry>
+</defaultsMap>
